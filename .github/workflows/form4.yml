@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write  # ✅ allows committing CSV updates
+  contents: write  # allows committing CSV updates
 
 jobs:
   run:
@@ -28,9 +28,9 @@ jobs:
       - name: Run SEC scraper
         run: python form4_to_csv.py
 
-      - name: Commit and push updated CSV
+      - name: Commit and push updated CSVs
         uses: EndBug/add-and-commit@v9
         with:
-          add: "form4_buys_latest.csv"
-          message: "Auto-update: latest Form 4 insider buys"
+          add: "*.csv"
+          message: "Auto-update: daily Form 4 insider buys"
           default_author: github_actions
