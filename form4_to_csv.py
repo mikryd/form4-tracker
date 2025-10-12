@@ -61,6 +61,9 @@ for i in range(PAGES):
         time.sleep(0.15)
 
 df = pd.DataFrame(rows)
-df.sort_values("ValueUSD", ascending=False, inplace=True)
+if "ValueUSD" in df.columns:
+    df.sort_values(["ValueUSD"], ascending=False, inplace=True)
+else:
+    print("⚠️ No 'ValueUSD' column found — skipping sort.")
 df.to_csv("form4_buys_latest.csv", index=False)
 print(f"Saved {len(df)} rows to form4_buys_latest.csv")
